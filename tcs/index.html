@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="theme-color" content="#070B10" />
+  <title>霓虹贪吃蛇 · NEON SNAKE</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./src/styles/style.css" />
+</head>
+<body>
+  <div class="bg-glow" aria-hidden="true"></div>
+
+  <main class="app">
+    <section class="game-card">
+      <!-- 顶部：分数 / 标题 / 最高分 -->
+      <header class="hud-top">
+        <div class="stat">
+          <span class="stat-label">分数</span>
+          <span class="stat-value" id="score">0</span>
+        </div>
+        <div class="brand">
+          <h1 class="brand-title">贪吃蛇</h1>
+          <span class="brand-sub">NEON&nbsp;SNAKE</span>
+        </div>
+        <div class="stat align-right">
+          <span class="stat-label">🏆 最高分</span>
+          <span class="stat-value high" id="high-score">0</span>
+        </div>
+      </header>
+
+      <!-- 游戏画布区域 -->
+      <div class="canvas-wrap" id="canvas-wrap">
+        <canvas id="game"></canvas>
+        <div class="scanlines" aria-hidden="true"></div>
+        <div class="vignette" aria-hidden="true"></div>
+
+        <!-- 状态遮罩：开始 / 暂停 / 结束 -->
+        <div class="overlay" id="overlay">
+          <div class="overlay-inner">
+            <h2 class="overlay-title" id="overlay-title">贪吃蛇</h2>
+            <p class="overlay-text" id="overlay-text"></p>
+            <button class="btn btn-primary" id="overlay-btn">开始游戏</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- 控制区 -->
+      <div class="controls">
+        <div class="control-row">
+          <button class="btn" id="btn-start">开始</button>
+          <button class="btn" id="btn-pause">暂停</button>
+          <button class="btn" id="btn-restart">重开</button>
+          <button class="btn btn-icon" id="btn-mute" aria-label="静音开关" aria-pressed="false">🔊</button>
+        </div>
+        <div class="control-row secondary">
+          <div class="segmented" role="group" aria-label="难度选择">
+            <span class="seg-label">难度</span>
+            <button class="seg" data-diff="slow">慢</button>
+            <button class="seg" data-diff="normal">中</button>
+            <button class="seg" data-diff="fast">快</button>
+          </div>
+          <div class="speed">速度 <span id="speed-level">1</span></div>
+        </div>
+      </div>
+
+      <!-- 移动端虚拟方向键 -->
+      <div class="dpad" id="dpad" aria-label="方向键">
+        <button class="dbtn up" data-dir="up" aria-label="上">▲</button>
+        <button class="dbtn left" data-dir="left" aria-label="左">◀</button>
+        <button class="dbtn right" data-dir="right" aria-label="右">▶</button>
+        <button class="dbtn down" data-dir="down" aria-label="下">▼</button>
+      </div>
+
+      <footer class="hint">
+        方向键 / WASD 控制方向 · 空格 暂停/继续 · 移动端可滑动或点方向键
+      </footer>
+    </section>
+  </main>
+
+  <!-- 以经典脚本按依赖顺序加载各模块，无需构建工具即可运行 -->
+  <script src="./src/core/config.js"></script>
+  <script src="./src/systems/Storage.js"></script>
+  <script src="./src/systems/AudioManager.js"></script>
+  <script src="./src/systems/InputController.js"></script>
+  <script src="./src/core/Snake.js"></script>
+  <script src="./src/core/Food.js"></script>
+  <script src="./src/systems/Renderer.js"></script>
+  <script src="./src/ui/HUD.js"></script>
+  <script src="./src/core/Game.js"></script>
+  <script src="./src/main.js"></script>
+</body>
+</html>
